@@ -2,3 +2,4 @@ retriever/doc_ret/DrQA
 retriever/graphdb/https://github.com/facebookresearch/opendialkg.git
 data/conversation_history
 models
+__pycache__
