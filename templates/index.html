@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="utf-8">
+	<title>Adapter Bot</title>
+	<meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7, user-scalable=0">
+	<link rel="stylesheet" href="https://unpkg.com/botui@0.3.9/build/botui.min.css" />
+	<link rel="stylesheet" href="https://unpkg.com/botui@0.3.9/build/botui-theme-default.css" />
+<!--    <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
+<!--    <link rel="stylesheet" href="../css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="../css/neo4jd3.min.css">
+
+    <!-- BOOTSTRAP   -->
+
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+	<link rel="stylesheet" href="../css/custom.css">
+
+  </head>
+  <body>
+    <div id="page-container">
+	<script defer src="../js/face-api.min.js"></script>
+	<script defer src="../js/script.js"></script> 
+	<!-- https://github.com/WebDevSimplified/Face-Detection-JavaScript -->
+	<video id="video" width="720" height="560" autoplay muted></video>
+
+	<div class="header container-fluid">
+      <div class="header-container">
+        <div class="title">
+            <p style="font-size:27px;">🤖&nbsp;</p><p>Adapter-Bot</p>
+        </div>
+        <div class="links" id="links" style="float:right">
+            <a target="_blank" href="https://caire.ust.hk/"><img src="../images/caire.png" alt="" class=" logo-caire"></a>
+            <a target="_blank" href=""><img src="../images/emos_ai.png" alt="" class=" logo-emos"></a>
+            <a target="_blank" href="https://www.ust.hk/home"><img src="../images/hkust.png" alt="" class=" logo-hkust"></a>
+        </div>
+    </div>
+    </div>
+
+    <div class="container content-wrap">
+	  <div class="row justify-content-center" style="width:100%">
+
+          <div class="container col-sm-12 col-md-12 "  style="max-width: 500px; padding-top:20px;" >
+            <div class="botui-app-container" style="max-width: 500px; " id="help-bot">
+              <bot-ui></bot-ui>
+
+            </div>
+              <div id="kb_graph" style="display:none; height: 230px; padding-top: 30px;"></div>
+              <div id="weather_info_" style="max-width:100%; padding-top:30px;"></div>
+              <div id="wiki_result" style="display:none; padding-top:30px;"></div>
+          </div>
+
+		<div class="container col-sm-12 col-md-12" style="max-width: 520px; overflow: scroll; max-height: 700px;">
+		  <div class="custom_block" style="margin-top:0px;">
+			<div class="custom-control custom-switch" style="margin-left: 30px;">
+				<input type="checkbox" class="custom-control-input" id="customSwitch1">
+				<label class="custom-control-label" for="customSwitch1">Emotion Detection</label>
+			  </div>
+			<button type="button" class="btn btn-primary btn-sm" style="width:35%"  id="manual_btn" onclick="collapse_btns(this); key_custom('caire')">Manual</button>
+			<button type="button" class="btn btn-primary btn-sm" style="width:35%" id="auto_btn" value="AUTOMODE" onclick="key_custom(this.value); collapse_btns(this);">Auto</button>
+		  </div>
+
+		  <div class="collapse" id="manualBtns">
+			<div class="custom_block">
+			  <button type="button" class="btn btn-outline-primary btn-sm" id="caire" onclick="key_custom(this.id)">Empathy</button>
+			  <button type="button" class="btn btn-outline-primary btn-sm" id="persona" onclick="key_custom(this.id)">Persona</button>
+			</div><hr class="custom_hr">
+			<div class="custom_block">
+				<button type="button" class="btn btn-outline-primary btn-sm" id="dialGPT" onclick="key_custom(this.id)">Neutral</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="anger" onclick="key_custom(this.id)">Angry</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="fear" onclick="key_custom(this.id)">Fearful</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="joy" onclick="key_custom(this.id)">Joyful</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="sadness" onclick="key_custom(this.id)">Sad</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="surprised" onclick="key_custom(this.id)">Surprised</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="positive" onclick="key_custom(this.id)">Positive</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="negative" onclick="key_custom(this.id)">Negative</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="question" onclick="key_custom(this.id)">Question</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="business" onclick="key_custom(this.id)">Business</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="sport" onclick="key_custom(this.id)">Sports</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="sci_tech" onclick="key_custom(this.id)">Scientific</button>
+			</div><hr class="custom_hr">
+			<div class="custom_block">
+                <!--<button type="button" class="btn btn-outline-primary btn-sm" id="MWoZ_attraction" onclick="key_custom(this.id)">Attraction</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="MWoZ_taxi" onclick="key_custom(this.id)">Taxi</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="MWoZ_hotel" onclick="key_custom(this.id)">Hotel</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="MWoZ_restaurant" onclick="key_custom(this.id)">Restaurant</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="MWoZ_train" onclick="key_custom(this.id)">Train</button>-->
+				<button type="button" class="btn btn-outline-primary btn-sm" id="weather" onclick="key_custom(this.id)">Weather</button>
+				<!-- <button type="button" class="btn btn-outline-primary btn-sm" id="navigate" onclick="key_custom(this.id)">Navigation</button> -->
+				<!-- <button type="button" class="btn btn-outline-primary btn-sm" id="schedule" onclick="key_custom(this.id)">Calendar</button> -->
+				<button type="button" class="btn btn-outline-primary btn-sm" id="Movie" onclick="key_custom(this.id)">Movie</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="Book" onclick="key_custom(this.id)">Book</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="Music" onclick="key_custom(this.id)">Music</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="Sport" onclick="key_custom(this.id)">Sport</button>
+				<button type="button" class="btn btn-outline-primary btn-sm" id="WoW" onclick="key_custom(this.id)">Wiki</button>
+		  </div><hr class="custom_hr">
+              <div class="custom_block">
+			  <button type="button" class="btn btn-outline-primary btn-sm" id="CovidQA" onclick="key_custom(this.id)">COVID-19 QA</button>
+			  <button type="button" class="btn btn-outline-primary btn-sm" id="debunker" onclick="key_custom(this.id)">Debunk COVID-19</button>
+			</div>
+			<hr class="custom_hr" style="border-top: 1px solid rgba(0,0,0,.3);">
+
+			<div class="custom_block" style="margin-top:16px;">
+                <div class="input-group input-group-sm mb-3" style="width:80%; margin-left:4px;margin-top:4px;">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="languageSelectGroup">Language</label>
+                  </div>
+                  <select class="custom-select" id="languageSelectGroup" onchange="set_language(this.value)">
+                    <option selected value="en">English</option>
+                    <option value="zh-CN">Chinese (Mandarin)</option>
+                    <option value="it" >Italian</option>
+                    <option value="id" >Indonesian</option>
+                    <option value="fr" >French</option>
+                    <option value="es" >Spanish</option>
+                    <option value="de" >German</option>
+                    <option value="ko" >Korean</option>
+                    <option value="ja" >Japanese</option>
+                  </select>
+                </div>
+<!--
+				<button type="button" class="btn btn-outline-primary btn-lang btn-sm" id="en" onclick="set_language(this.id)">En</button>
+				<button type="button" class="btn btn-outline-primary btn-lang btn-sm" id="zh" onclick="set_language(this.id)">Zh</button>
+				<button type="button" class="btn btn-outline-primary btn-lang btn-sm" id="it" onclick="set_language(this.id)">It</button>
+				<button type="button" class="btn btn-outline-primary btn-lang btn-sm" id="id" onclick="set_language(this.id)">Id</button>
+				<button type="button" class="btn btn-outline-primary btn-lang btn-sm" id="fr" onclick="set_language(this.id)">Fr</button>
+				<button type="button" class="btn btn-outline-primary btn-lang btn-sm" id="es" onclick="set_language(this.id)">Es</button>
+				<button type="button" class="btn btn-outline-primary btn-lang btn-sm" id="de" onclick="set_language(this.id)">De</button>
+-->
+            </div><hr class="custom_hr" style="border-top: 1px solid rgba(0,0,0,.3);">
+             <div class="custom_block" style="margin-bottom:0px;">
+			  <form style="margin-left:10px;">
+                    <label for="formControlRange" style="margin-right:10px;">Temp</label>
+                    <input type="range" class="custom-range" min="0" max="1" step="0.01" value="0.7" id="temp_slide">
+              </form>
+			  <form style="margin-left:10px;">
+                    <label for="formControlRange2" style="margin-right:10px;">Top-p</label>
+                    <input type="range" class="custom-range" min="0" max="1" step="0.01" value="0.9" id="top-p_slide">
+			  </form>
+			  <form style="margin-left:10px;">
+				<label for="formControlRange3" style="margin-right:10px;">Rep.Pen.</label>
+				<input type="range" class="custom-range" min="1" max="2" step="0.01" value="1.0" id="repetition_slide">
+		     </form>
+			</div>
+
+
+		  </div>
+	  </div>
+	  </div>
+
+
+	</div>
+<!--        <div id="neo4jd3"></div> -->
+
+
+<!--<footer id="footer">
+      <div class="container">
+        <div class="footer-wrap mx-auto justify-content-center">
+          <div class="row">
+                <div class="col-md-12">
+                    <a target="_blank" href="https://caire.ust.hk/about/about-caire" class="logo">
+                        <img src="../images/caire.png" alt="" class=" logo-caire"></a>
+                        <img src="../images/emos_ai.png" alt="" class=" logo-emos">
+                        <img src="../images/hkust.png" alt="" class=" logo-hkust">
+                </div>
+          </div>
+        </div>
+      </div>
+    </footer>-->
+	</div>
+
+
+	<!-- use Vue version 2.0.5 for HTML embeds | https://github.com/botui/botui/issues/103 <img style="width: 60%;" src="./dummy.png">-->
+	 <!-- remove .min from the file name to use in development mode -->
+    <script src="../js/d3.min.js"></script>
+    <script src="../js/neo4jd3.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/botui@0.3.9/build/botui.min.js"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+	<script src="../js/index.js"></script>
+  </body>
+</html>
