@@ -15,7 +15,7 @@ If you find this paper and code useful, please cite our paper:
 }
 ```
 
-## Basic Installation
+# Basic Installation
 In this repository, we release the trained model, the knowledge retriever, and the interactive script (both via termial and the UI) of the adapter-bot. 
 
 ## Download models
@@ -36,4 +36,19 @@ os.remove(output)
 ```
 
 ## Download and install knowledge retriever (KG and Wiki)
-To download and install the knowledge retriever you can check the 
+To download and install the knowledge retrievers you can have to follow the step in the ```retriever``` folder. Specifically, for the knowledge graph follow the read me at:
+```
+https://github.com/HLTCHKUST/adapterbot/tree/main/retriever/graphdb#installing-neo4j
+```
+which provides instructions to install neo4j and load opendialoKG. For the wikipedia knowledge, we use [DrQA](https://github.com/facebookresearch/DrQA). Also in this case follow the read me at:
+```
+https://github.com/HLTCHKUST/adapterbot/tree/main/retriever/doc_ret
+```
+which provides a simple script for download the wikidump and train the tf-idf retriever.
+
+## Run the interactive script
+To interact with the model via command line use the following script:
+```
+>>> python interact_adapter.py --interact
+```
+
