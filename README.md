@@ -17,3 +17,23 @@ If you find this paper and code useful, please cite our paper:
 
 ## Basic Installation
 In this repository, we release the trained model, the knowledge retriever, and the interactive script (both via termial and the UI) of the adapter-bot. 
+
+## Download models
+To download the pretrained model run the following commands: 
+```
+## pip install gdown
+import gdown
+import zipfile
+import os
+
+
+url = 'https://drive.google.com/uc?id=1Xx8388WwK6e6pQi_vrANHLQJOVX4q1U4'
+output = 'models.zip'
+gdown.download(url, output, quiet=False)
+with zipfile.ZipFile(output, 'r') as zip_ref:
+    zip_ref.extractall()
+os.remove(output)
+```
+
+## Download and install knowledge retriever (KG and Wiki)
+To download and install the knowledge retriever you can check the 
