@@ -5,6 +5,8 @@
 This is the implementation of the paper:
 **The Adapter-Bot: All-In-One Controllable Conversational Model**. [Zhaojiang Lin](https://zlinao.github.io/)*, [Andrea Madotto](https://andreamad8.github.io/)*, Yejin Bang, Pascale Fung  ***AAAI-DEMO*** [[PDF]](https://arxiv.org/pdf/2008.12579.pdf)
 
+
+## Citation:
 If you find this paper and code useful, please cite our paper: 
 ```
 @article{madotto2020adapter,
