@@ -1,4 +1,7 @@
 flask
 nostril
 json
-transformers
+iso3166
+geograpy
+torch==1.4.0
+transformers==2.11.0

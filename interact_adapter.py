@@ -6,8 +6,8 @@ import torch
 import argparse
 import torch.nn.functional as F
 from utils.helper import load_classifier
-from utils.dialKG_retriver import get_KB_dialKG
-# from utils.WoW_retriver import get_KB_WoW
+# from utils.dialKG_retriver import get_KB_dialKG
+from utils.WoW_retriver import get_KB_WoW
 from utils.WEA_retriver import get_weather
 import json
 import math
