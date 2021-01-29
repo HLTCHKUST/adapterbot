@@ -29,7 +29,7 @@ import zipfile
 import os
 
 
-url = 'https://drive.google.com/uc?id=1Xx8388WwK6e6pQi_vrANHLQJOVX4q1U4'
+url = 'https://drive.google.com/uc?id=1JQZex-AD-sa5WUT5U4lIn1K2sPW-us8a/'
 output = 'models.zip'
 gdown.download(url, output, quiet=False)
 with zipfile.ZipFile(output, 'r') as zip_ref:
